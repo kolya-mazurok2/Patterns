@@ -1,9 +1,12 @@
 package com.stud;
 
+import com.stud.builder.HawaiianPizzaBuilder;
+import com.stud.builder.Waiter;
 import com.stud.factory.ComputerFactory;
 import com.stud.factory.ComputerType;
 import com.stud.factory.model.Computer;
 import com.stud.singleton.Configuration;
+import com.stud.builder.PizzaBuilder;
 
 public class App {
 	public static void main(String[] args) {
@@ -16,5 +19,11 @@ public class App {
 		Computer server = ComputerFactory.getComputer(ComputerType.SERVER, "32 GB", "4 TB", "4.2 GHz");
 		System.out.println("PC config: " + pc);
 		System.out.println("Server config: " + server);
+		//builder
+		Waiter w = new Waiter();
+		PizzaBuilder hawaiian = new HawaiianPizzaBuilder();
+		w.setPizzaBuilder(hawaiian);
+		w.constructPizza();
+		System.out.println("Hawaiian pizza contains: " + w.getPizza());
 	}
 }
