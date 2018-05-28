@@ -24,6 +24,9 @@ import com.stud.factory.model.Computer;
 import com.stud.proxy.HighResolutionImage;
 import com.stud.proxy.Image;
 import com.stud.proxy.ImageProxy;
+import com.stud.publisher.MyTopic;
+import com.stud.publisher.MyTopicSubscriber;
+import com.stud.publisher.Observer;
 import com.stud.singleton.Configuration;
 import com.stud.visitor.Book;
 import com.stud.visitor.Fruit;
@@ -88,5 +91,16 @@ public class App {
 			sum = sum + item.accept(visitor);
 		}
 		System.out.println("Total: " + sum);
+		System.out.println("___________________________________________");
+		//Publisher
+		MyTopic topic = new MyTopic();
+		Observer obj1 = new MyTopicSubscriber("first");
+		Observer obj2 = new MyTopicSubscriber("second");
+		topic.register(obj1);
+		topic.register(obj2);
+		obj1.setSubject(topic);
+		obj2.setSubject(topic);
+		obj1.update();
+		topic.postMessage("Test message");
 	}
 }
