@@ -1,5 +1,8 @@
 package com.stud;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import com.stud.adapter.SocketAdapter;
 import com.stud.adapter.SocketClassAdapterImpl;
 import com.stud.adapter.SocketObjectAdapterImpl;
@@ -22,6 +25,11 @@ import com.stud.proxy.HighResolutionImage;
 import com.stud.proxy.Image;
 import com.stud.proxy.ImageProxy;
 import com.stud.singleton.Configuration;
+import com.stud.visitor.Book;
+import com.stud.visitor.Fruit;
+import com.stud.visitor.ItemElement;
+import com.stud.visitor.ShoppingCartVisitor;
+import com.stud.visitor.ShoppingCartVisitorImpl;
 import com.stud.builder.PizzaBuilder;
 
 public class App {
@@ -70,5 +78,15 @@ public class App {
 		FileInvoker fi = new FileInvoker(ofc);
 		fi.execute();
 		System.out.println("___________________________________________");
+		//Visitor
+		List<ItemElement> list = new ArrayList<ItemElement>();
+		list.add(new Book(60, "113"));
+		list.add(new Fruit(10,3,"Orange"));
+		int sum = 0;
+		ShoppingCartVisitor visitor = new ShoppingCartVisitorImpl();
+		for(ItemElement item: list) {
+			sum = sum + item.accept(visitor);
+		}
+		System.out.println("Total: " + sum);
 	}
 }
