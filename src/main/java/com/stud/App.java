@@ -11,6 +11,10 @@ import com.stud.bridge.Shape;
 import com.stud.bridge.Triangle;
 import com.stud.builder.HawaiianPizzaBuilder;
 import com.stud.builder.Waiter;
+import com.stud.command.FileInvoker;
+import com.stud.command.FileSystemReceiver;
+import com.stud.command.FileSystemReceiverUtil;
+import com.stud.command.OpenFileCommand;
 import com.stud.factory.ComputerFactory;
 import com.stud.factory.ComputerType;
 import com.stud.factory.model.Computer;
@@ -59,6 +63,12 @@ public class App {
 		tr.applyColor();
 		Shape p = new Pentagon(new Red());
 		p.applyColor();
+		System.out.println("___________________________________________");
+		//Command
+		FileSystemReceiver fsr = FileSystemReceiverUtil.getUnderlyingFileSystem();
+		OpenFileCommand ofc = new OpenFileCommand(fsr);
+		FileInvoker fi = new FileInvoker(ofc);
+		fi.execute();
 		System.out.println("___________________________________________");
 	}
 }
