@@ -1,5 +1,9 @@
 package com.stud;
 
+import com.stud.adapter.SocketAdapter;
+import com.stud.adapter.SocketClassAdapterImpl;
+import com.stud.adapter.SocketObjectAdapterImpl;
+import com.stud.adapter.Volts;
 import com.stud.builder.HawaiianPizzaBuilder;
 import com.stud.builder.Waiter;
 import com.stud.factory.ComputerFactory;
@@ -33,5 +37,12 @@ public class App {
 		img.showImage();
 		Image directly = new HighResolutionImage("img/high_reso.jpg");
 		directly.showImage();
+		//adapter
+		SocketAdapter sa1 = new SocketClassAdapterImpl();
+		Volts v3 = sa1.get3Volts();
+		System.out.println("Class adapter(v3): " +v3 );
+		SocketAdapter sa2 = new SocketObjectAdapterImpl();
+		Volts v12 = sa2.get12Volts();
+		System.out.println("Object adapter(v12): " +v12 );
 	}
 }
