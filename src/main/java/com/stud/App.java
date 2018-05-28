@@ -5,6 +5,9 @@ import com.stud.builder.Waiter;
 import com.stud.factory.ComputerFactory;
 import com.stud.factory.ComputerType;
 import com.stud.factory.model.Computer;
+import com.stud.proxy.HighResolutionImage;
+import com.stud.proxy.Image;
+import com.stud.proxy.ImageProxy;
 import com.stud.singleton.Configuration;
 import com.stud.builder.PizzaBuilder;
 
@@ -25,5 +28,10 @@ public class App {
 		w.setPizzaBuilder(hawaiian);
 		w.constructPizza();
 		System.out.println("Hawaiian pizza contains: " + w.getPizza());
+		//proxy
+		Image img = new ImageProxy("img/img.jpg");
+		img.showImage();
+		Image directly = new HighResolutionImage("img/high_reso.jpg");
+		directly.showImage();
 	}
 }
